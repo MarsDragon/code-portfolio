@@ -1,0 +1,50 @@
+/*Palette:
+
+TExt: FFFFFF
+Primary background: 202020
+Secondaries: D5D5D5 (light), 7A7A7A (darker), 595A7F (medium)
+
+*/
+html{
+  font-family: Ariel, sans-serif;
+  background-color: #202020;
+}
+
+body{
+  width: 50%;
+  margin: auto;
+  color: white;
+  font-size: 1em;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
+
+a:hover, .tab-nav li:hover{
+  color: #595A7F;
+}
+
+address{
+  font-style:normal;
+}
+
+article{
+  padding: 1em 0;
+  border-top: 1px solid #7A7A7A;
+}
+
+article:first-child{
+  border: none;
+}
+
+section{
+  text-align: center;
+}
+
+@media (min-width: 1000px) {
+  li{
+    float: left;
+  }
+}

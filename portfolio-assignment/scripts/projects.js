@@ -21,15 +21,10 @@ Project.prototype.toHtml = function(){
 
   //append as soon as you finish
   Project.prototype.append($localProj);
-  Project.prototype.cleanUp();
 };
 
 Project.prototype.append = function (obj){
   $('#projects').append(obj);
-};
-
-Project.prototype.cleanUp = function (){
-  $('article.template').hide();
 };
 
 test.forEach(function(obj){

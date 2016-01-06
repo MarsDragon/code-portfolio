@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Amy's Portfolio</title>
     <link rel="stylesheet" href="styles/normalize.css">
-    <link rel="stylesheet" href="styles/moonside.css">
+    <link rel="stylesheet" href="styles/stark_base.css">
+    <link rel="stylesheet" href="styles/stark_modules.css">
   </head>
 
   <body>
@@ -14,15 +15,21 @@
       </header>
 
       <nav>
-        <ul>
-          <li>About Me (coming soon)</li>
+        <ul class="tab-nav">
+          <li class="tab" data-content="about">About Me</li>
           <li><address><a href="mailto:amyeleek@gmail.com">Contact Me</a></address></li>
+          <li class="tab" data-content="projects">My Projects</li>
           <li><a href="https://github.com/MarsDragon/">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/amy-leek-b026bb21">LinkedIn</a></li>
         </ul>
       </nav>
 
-      <section id="projects">
+      <section id="about" class="tab-section">
+        <h2>About Me</h2>
+        <p>Let's just pretend I have something interesting to put here okay</p>
+      </section>
+
+      <section id="projects" class="tab-section">
         <h2>My Projects</h2>
         <article class="template">
           <header>
@@ -44,5 +51,6 @@
     <script src="scripts/jquery-2.1.4.js"></script>
     <script src="scripts/data.js"></script>
     <script src="scripts/projects.js"></script>
+    <script src="scripts/projectView.js"></script>
   </body>
 </html>

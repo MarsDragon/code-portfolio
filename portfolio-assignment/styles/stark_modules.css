@@ -1,0 +1,53 @@
+/*Lists and nav*/
+
+ul{
+  display: inline-block;
+  list-style: none;
+  -webkit-padding-start: 0;
+}
+
+li{
+  padding: 1em;
+}
+
+footer li:before{
+  content: " | ";
+  padding-right: 1em;
+}
+
+footer li:first-child:before{
+  content: "";
+}
+
+.tab-nav{
+  cursor: pointer;
+}
+
+/*Project section*/
+
+/*Don't show any sections initially...*/
+.tab-section{
+  display: none;
+}
+
+/*besides the About Me section*/
+#about{
+  display: block;
+}
+
+header a{
+  font-size: 1.2em;
+}
+
+.info{
+  font-size: 0.8em;
+  padding: 1em;
+  font-style: italic;
+  color: #D5D5D5;
+}
+
+.template{
+  display: none;
+}
+
+.description{}
