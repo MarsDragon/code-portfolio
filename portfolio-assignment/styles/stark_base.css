@@ -43,6 +43,11 @@ section{
   text-align: center;
 }
 
+select{
+  margin: 1em;
+  background-color: #202020;
+}
+
 @media (min-width: 1000px) {
   li{
     float: left;

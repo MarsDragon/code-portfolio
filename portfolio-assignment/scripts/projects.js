@@ -9,12 +9,14 @@ Project.prototype.toHtml = function(){
   //make a local variable using the template
   var $localProj = $('article.template').clone();
 
+  //category data attribute
+  $localProj.attr('data-category', i.category);
+
   //fill in the html
   $localProj.find('header a').text(i.name);
   $localProj.find('header a').attr('src', i.url);
   $localProj.find('.info time:first').text(i.startDate);
   $localProj.find('.info time:last').text(i.finDate);
-  //$newArticle.find('.article-body').html(this.body);
   $localProj.find('.description').html(i.description);
 
   //remove template class
