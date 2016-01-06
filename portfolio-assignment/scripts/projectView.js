@@ -8,7 +8,15 @@ projectView.tabNav = function() {
   });
 };
 
-// DONE: Call all of the above functions, once we are sure the DOM is ready.
+projectView.hideDesc = function() {
+  $('.view-description').on('click', function(event){
+    $(this).siblings('.description').children().show();
+    $(this).siblings('.description').removeClass('hidden');
+    $(this).hide();
+  });
+};
+
 $(document).ready(function(){
   projectView.tabNav();
+  projectView.hideDesc();
 });

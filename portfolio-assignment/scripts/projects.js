@@ -14,7 +14,8 @@ Project.prototype.toHtml = function(){
   $localProj.find('header a').attr('src', i.url);
   $localProj.find('.info time:first').text(i.startDate);
   $localProj.find('.info time:last').text(i.finDate);
-  $localProj.find('.description').text(i.description);
+  //$newArticle.find('.article-body').html(this.body);
+  $localProj.find('.description').html(i.description);
 
   //remove template class
   $localProj.removeClass('template');
