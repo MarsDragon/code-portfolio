@@ -10,9 +10,14 @@ li{
   padding: 1em;
 }
 
+footer li{
+  font-size: .6em;
+  padding: .2em;
+}
+
 footer li:before{
   content: " | ";
-  padding-right: 1em;
+  padding-right: .2em;
 }
 
 footer li:first-child:before{
@@ -23,6 +28,13 @@ footer li:first-child:before{
   cursor: pointer;
 }
 
+ul.tab-nav{
+  display: none;
+}
+
+.menu-toggle{
+  font-size: 2em;
+}
 /*Project section*/
 
 /*Don't show any sections initially...*/
@@ -76,4 +88,42 @@ header a{
 
 .view-description:hover{
     color: #595A7F;
+}
+
+/*I'll split these into better places when I have an actual mouse*/
+@media (min-width:650px){
+  h1{
+    width: 60%;
+    text-align: center;
+    margin:auto;
+  }
+
+  ul.tab-nav{
+      display: inline-block;
+  }
+
+  .tab-nav li{
+    width: 20%;
+    float: left;
+  }
+
+  .icon-menu3{
+    display: none;
+  }
+}
+
+
+@media (min-width: 1000px) {
+  h1{
+    width: 100%;
+    text-align: left;
+  }
+
+  ul.tab-nav{
+    width: 100%;
+  }
+
+  .tab-nav li{
+    width: auto;
+  }
 }

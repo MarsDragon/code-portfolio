@@ -17,6 +17,10 @@ body{
   font-size: 1em;
 }
 
+h1{
+  padding: .5em;
+}
+
 a{
   color: white;
   text-decoration: none;
@@ -24,6 +28,10 @@ a{
 
 a:hover, .tab-nav li:hover{
   color: #595A7F;
+}
+
+img{
+  max-width: 100%;
 }
 
 address{
@@ -46,10 +54,4 @@ section{
 select{
   margin: 1em;
   background-color: #202020;
-}
-
-@media (min-width: 1000px) {
-  li{
-    float: left;
-  }
 }

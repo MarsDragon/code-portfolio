@@ -40,9 +40,24 @@ projectView.eventCategoryFilter = function() {
   });
 };
 
+projectView.toggleMenu = function () {
+  var $menu = $('.menu-toggle');
+  $menu.on('click', function(e) {
+    e.preventDefault();
+    $('.tab-nav').toggle(400,function(){
+      if($menu.hasClass('icon-menu3')){
+        $menu.removeClass('icon-menu3').addClass('icon-menu4');
+      }else{
+        $menu.removeClass('icon-menu4').addClass('icon-menu3');
+      }
+    });
+  });
+};
+
 $(document).ready(function(){
   projectView.tabNav();
   projectView.hideDesc();
   projectView.createFilters();
   projectView.eventCategoryFilter();
+  projectView.toggleMenu();
 });
