@@ -41,24 +41,18 @@ img{
   max-width: 100%;
 }
 
-address{
-  font-style:normal;
+/*I'll split these into better places when I have an actual mouse*/
+@media (min-width:650px){
+  h1{
+    width: 60%;
+    text-align: center;
+    margin:auto;
+  }
 }
 
-article{
-  padding: 1em 0;
-  border-top: 1px solid #7A7A7A;
-}
-
-article:first-child{
-  border: none;
-}
-
-section{
-  text-align: center;
-}
-
-select{
-  margin: 1em;
-  background-color: #202020;
+@media (min-width: 1000px) {
+  h1{
+    width: 100%;
+    text-align: left;
+  }
 }
