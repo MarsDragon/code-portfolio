@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/stark_base.css">
     <link rel="stylesheet" href="styles/stark_modules.css">
+
+    <script id="project-template" type="text/x-handlebars-template">
+    <article class="">
+      <header>
+        <a href="{{url}}">{{name}}</a>
+        <div class="info">Project started on <time>{{startDate}}</time> and completed on <time>{{finDate}}</time></div>
+      </header>
+      <section class="description hidden">{{{description}}}</section>
+      <p class="view-description">View full description</p>
+    </article>
+    </script>
+
   </head>
 
   <body>
@@ -38,15 +50,6 @@
         <select id="category-filter">
           <option value=""> ~Filter by Categories~ </option>
         </select>
-
-        <article class="template">
-          <header>
-            <a href="">Project Name</a>
-            <div class="info">Project started on <time>Date</time> and completed on <time>Date</time></div>
-          </header>
-          <section class="description hidden">Project Description</section>
-          <p class="view-description">View full description</p>
-        </article>
       </section>
 
     </main>
@@ -58,6 +61,7 @@
       </ul>
     </footer>
     <script src="scripts/jquery-2.1.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
     <script src="scripts/data.js"></script>
     <script src="scripts/projects.js"></script>
     <script src="scripts/projectView.js"></script>

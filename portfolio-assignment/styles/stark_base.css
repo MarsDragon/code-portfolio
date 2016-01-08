@@ -18,7 +18,14 @@ body{
 }
 
 h1{
+  font-family: 'Lucida Bright', Georgia, serif;
+  font-weight: 500;
   padding: .5em;
+}
+
+h2{
+  font-family: 'Lucida Bright', Georgia, serif;
+  font-weight: 500;
 }
 
 a{

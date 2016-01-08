@@ -6,29 +6,17 @@ function Project(args){
 };
 
 Project.prototype.toHtml = function(){
-  //make a local variable using the template
-  var $localProj = $('article.template').clone();
+  //standard Handlebars, get template, compile template, insert data, shove onto page
+  var getTemplate = $('#project-template').html();
+  var compTemplate = Handlebars.compile(getTemplate);
 
-  //category data attribute
-  $localProj.attr('data-category', i.category);
-
-  //fill in the html
-  $localProj.find('header a').text(i.name);
-  $localProj.find('header a').attr('src', i.url);
-  $localProj.find('.info time:first').text(i.startDate);
-  $localProj.find('.info time:last').text(i.finDate);
-  $localProj.find('.description').html(i.description);
-
-  //remove template class
-  $localProj.removeClass('template');
-
-  //append as soon as you finish
-  Project.prototype.append($localProj);
+  var html = compTemplate(this);
+  $('#projects').append(html);
 };
 
-Project.prototype.append = function (obj){
-  $('#projects').append(obj);
-};
+//Project.prototype.append = function (obj){
+//  $('#projects').append(obj);
+//};
 
 test.forEach(function(obj){
   proj = new Project(obj);
