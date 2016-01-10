@@ -33,8 +33,9 @@
         <a href="#" class="icon-menu3 menu-toggle"></a>
         <ul class="tab-nav">
           <li class="tab" data-content="about">About Me</li>
-          <li><address><a href="mailto:amyeleek@gmail.com">Contact Me</a></address></li>
           <li class="tab" data-content="projects">My Projects</li>
+          <li class="tab" data-content="new">New Project</li>
+          <li><address><a href="mailto:amyeleek@gmail.com">Contact Me</a></address></li>
           <li><a href="https://github.com/MarsDragon/">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/amy-leek-b026bb21">LinkedIn</a></li>
         </ul>
@@ -44,6 +45,44 @@
         <h2>About Me</h2>
         <p>Let's just pretend I have something interesting to put here okay</p>
       </section>
+
+      <section id="new" class="tab-section">
+          <h1>New Project</h1>
+          <form action="#" id="new-proj">
+            <label>
+              <span class="grid-3">Name:</span>
+              <input type="text" id="project-name" placeholder="Project Name" required>
+            </label>
+            <label>
+              <span class="grid-3">Url:</span>
+              <input type="text" id="project-url" placeholder="Project URL" required>
+            </label>
+            <label>
+              <span class="grid-3">Category:</span>
+              <input type="text" id="project-category" placeholder="Category" required>
+            </label>
+            <label>
+              <span class="grid-3">Started on:</span>
+              <input type="date" id="project-startDate" required>
+            </label>
+            <label>
+              <span class="grid-5">Description:</span>
+              <textarea id="project-description" rows="8" cols="40" required></textarea>
+            </label>
+            <label>
+              Finished: <input type="checkbox" id="project-finished">
+            </label>
+          </form>
+        <section id="project-preview" class="tab-section">
+          <!-- Preview will load here based on the above template-->
+        </section>
+        <section id="project-export">
+          <label id="exported" for="project-json" class="pull-right">
+            <input type="text" readonly id="project-json" class="grid-5">
+            <span class="grid-5" >When finalized, copy the above JSON, and paste into data.js</span>
+          </label>
+      </section>
+    </section>
 
       <section id="projects" class="tab-section">
         <h2>My Projects</h2>
@@ -61,8 +100,11 @@
         <li>Other info</li>
       </ul>
     </footer>
-    <script src="scripts/jquery-2.1.4.js"></script>
+    <script src="scripts/vendor/jquery-2.1.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <script src="scripts/vendor/marked.js"></script>
+    <script src="scripts/vendor/highlight.pack.js"></script>
+
     <script src="scripts/data.js"></script>
     <script src="scripts/projects.js"></script>
     <script src="scripts/projectView.js"></script>

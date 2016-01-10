@@ -12,6 +12,7 @@ li{
 
 footer li{
   font-size: .6em;
+  float: left;
   padding: .2em;
 }
 
@@ -90,7 +91,31 @@ header a{
     color: #595A7F;
 }
 
-/*I'll split these into better places when I have an actual mouse*/
+/*Forms*/
+input, textarea{
+  background-color: #202020;
+  color: #FFF;
+}
+
+section form{
+  text-align:left;
+}
+
+form label{
+  padding: .3em .4em;
+  display: block;
+}
+
+#exported span{
+  font-size: .8em;
+  font-style: italic;
+  color: #D5D5D5;
+}
+
+#new #project-preview .view-description{
+  display: none;
+}
+
 @media (min-width:650px){
   ul.tab-nav{
       display: inline-block;

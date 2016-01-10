@@ -54,10 +54,54 @@ projectView.toggleMenu = function () {
   });
 };
 
+//new project stuff
+projectView.initNewArticleForm = function () {
+  //hide the exported field for now
+  $('#project-export').hide();
+
+  //when the exported JSON is focused on, select it all
+  $('#exported').on('focus', function(){
+    this.select();
+  });
+
+  //when the input changes, build the preview and JSO
+  $('#new-proj').on('change', 'input, textarea', projectView.createNew);
+};
+
+projectView.createNew = function() {
+  var project;
+
+  //clear out the preview
+  $('#project-preview').empty();
+
+  //grab the form fields and make a new project with 'em
+  project = new Project({
+    name: $('#project-name').val(),
+    url: $('#project-url').val(),
+    category: $('#project-category').val(),
+    startDate: $('#project-startDate').val(),
+    finDate: $('#project-finished').val().length ? new Date().toISOString().slice(0,10) : null,
+    description: $('#project-description').val()
+  });
+
+  $('#project-preview').append(project.toHtml());
+  $('#project-preview').show();
+  $('#new #project-preview section').removeClass('hidden');
+
+  $('pre code').each(function(i, chunk){
+    hljs.highlightBlock(chunk);
+  });
+
+  $('#project-export').show();
+
+  $('#project-json').val(JSON.stringify(project) + ',');
+};
+
 $(document).ready(function(){
   projectView.tabNav();
   projectView.hideDesc();
   projectView.createFilters();
   projectView.eventCategoryFilter();
   projectView.toggleMenu();
+  projectView.initNewArticleForm();
 });
