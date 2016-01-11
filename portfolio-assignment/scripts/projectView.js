@@ -97,11 +97,16 @@ projectView.createNew = function() {
   $('#project-json').val(JSON.stringify(project) + ',');
 };
 
-$(document).ready(function(){
+projectView.init = function() {
+  //oh FINE
+  Project.all.forEach(function(i){
+    $('#projects').append(i.toHtml());
+  });
+
   projectView.tabNav();
   projectView.hideDesc();
   projectView.createFilters();
   projectView.eventCategoryFilter();
   projectView.toggleMenu();
   projectView.initNewArticleForm();
-});
+};
