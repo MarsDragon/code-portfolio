@@ -1,3 +1,5 @@
+var projects = [];
+
 function Project(args){
   i = this; //so context is not lost inside the loop, we create a new variable to hold our values
   $.each(args, function(key, value){
@@ -7,11 +9,12 @@ function Project(args){
 
 Project.prototype.toHtml = function(){
   //standard Handlebars, get template, compile template, insert data, shove onto page
-  var getTemplate = $('#project-template').html();
-  var compTemplate = Handlebars.compile(getTemplate);
+  var compTemplate = Handlebars.compile($('#project-template').text());
 
-  var html = compTemplate(this);
-  $('#projects').append(html);
+  //change markdown into HTML
+  this.description = marked(this.description);
+
+  return compTemplate(this);
 };
 
 //Project.prototype.append = function (obj){
@@ -19,6 +22,10 @@ Project.prototype.toHtml = function(){
 //};
 
 test.forEach(function(obj){
-  proj = new Project(obj);
-  proj.toHtml();
+  projects.push(new Project(obj));
+});
+
+//oh FINE
+projects.forEach(function(i){
+  $('#projects').append(i.toHtml());
 });
