@@ -1,10 +1,18 @@
 var projectView = {};
 
+projectView.initTab = function() {
+  $('.tab-section').hide();
+  $('#'+ localStorage.getItem('currTab')).show();
+  console.log('cache hit!');
+};
+
 projectView.tabNav = function() {
   $('.tab').on('click', function(event){
     var $content = $(this).data('content');
     $('.tab-section').hide();
     $('#'+ $content).fadeIn(700);
+    localStorage.setItem('currTab', $content);
+    console.log('cache write!');
   });
 };
 
@@ -94,6 +102,7 @@ projectView.createNew = function() {
   localStorage.setItem('startDate', $('#project-startDate').val());
   localStorage.setItem('finDate', $('#project-finished').val().length ? new Date().toISOString().slice(0,10) : null);
   localStorage.setItem('description', $('#project-description').val());
+  console.log('cache write!');
 
   $('pre code').each(function(i, chunk){
     hljs.highlightBlock(chunk);
@@ -110,6 +119,9 @@ projectView.init = function() {
     $('#projects').append(i.toHtml());
   });
 
+  //load up whatever tab the user was on previously
+  localStorage.currTab ? projectView.initTab(): null;
+
   //if there's local date for the fields, load it in. Else do nothing.
   localStorage.name ? $('#project-name').val(localStorage.getItem('name')) : null;
   localStorage.url ? $('#project-url').val(localStorage.getItem('url')) : null;
@@ -117,6 +129,7 @@ projectView.init = function() {
   localStorage.startDate ? $('#project-startDate').val(localStorage.getItem('startDate')) : null;
   localStorage.finDate ? $('#project-finished').val(localStorage.getItem('finDate')) : null;
   localStorage.description ? $('#project-description').val(localStorage.getItem('description')) : null;
+  console.log('cache hit!');
 
   projectView.tabNav();
   projectView.hideDesc();
