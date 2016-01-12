@@ -71,8 +71,7 @@ projectView.initNewArticleForm = function () {
 projectView.createNew = function() {
   var project;
 
-  //clear out the preview
-  $('#project-preview').empty();
+  $('#project-preview').empty;
 
   //grab the form fields and make a new project with 'em
   project = new Project({
@@ -88,6 +87,14 @@ projectView.createNew = function() {
   $('#project-preview').show();
   $('#new #project-preview section').removeClass('hidden');
 
+  //set the local storage to hold the data
+  localStorage.setItem('name', $('#project-name').val());
+  localStorage.setItem('url', $('#project-url').val());
+  localStorage.setItem('category', $('#project-category').val());
+  localStorage.setItem('startDate', $('#project-startDate').val());
+  localStorage.setItem('finDate', $('#project-finished').val().length ? new Date().toISOString().slice(0,10) : null);
+  localStorage.setItem('description', $('#project-description').val());
+
   $('pre code').each(function(i, chunk){
     hljs.highlightBlock(chunk);
   });
@@ -102,6 +109,14 @@ projectView.init = function() {
   Project.all.forEach(function(i){
     $('#projects').append(i.toHtml());
   });
+
+  //if there's local date for the fields, load it in. Else do nothing.
+  localStorage.name ? $('#project-name').val(localStorage.getItem('name')) : null;
+  localStorage.url ? $('#project-url').val(localStorage.getItem('url')) : null;
+  localStorage.category ? $('#project-category').val(localStorage.getItem('category')) : null;
+  localStorage.startDate ? $('#project-startDate').val(localStorage.getItem('startDate')) : null;
+  localStorage.finDate ? $('#project-finished').val(localStorage.getItem('finDate')) : null;
+  localStorage.description ? $('#project-description').val(localStorage.getItem('description')) : null;
 
   projectView.tabNav();
   projectView.hideDesc();
