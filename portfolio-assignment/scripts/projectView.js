@@ -1,140 +1,158 @@
-var projectView = {};
+(function(module) {
 
-projectView.initTab = function() {
-  $('.tab-section').hide();
-  $('#'+ localStorage.getItem('currTab')).show();
-  console.log('cache hit!');
-};
+  var projectView = {};
 
-projectView.tabNav = function() {
-  $('.tab').on('click', function(event){
-    var $content = $(this).data('content');
+  projectView.initTab = function() {
     $('.tab-section').hide();
-    $('#'+ $content).fadeIn(700);
-    localStorage.setItem('currTab', $content);
-    console.log('cache write!');
-  });
-};
+    $('#'+ localStorage.getItem('currTab')).show();
+    console.log('cache hit!');
+  };
 
-projectView.hideDesc = function() {
-  $('.view-description').on('click', function(event){
-    $(this).siblings('.description').children().show();
-    $(this).siblings('.description').removeClass('hidden');
-    $(this).hide();
-  });
-};
+  projectView.tabNav = function() {
+    $('.tab').on('click', function(event){
+      var $content = $(this).data('content');
+      $('.tab-section').hide();
+      $('#'+ $content).fadeIn(700);
+      localStorage.setItem('currTab', $content);
+      console.log('cache write!');
+    });
+  };
 
-projectView.createFilters = function() {
-  $('article').each(function() {
-    if (!$(this).hasClass('template')) {
-      val = $(this).attr('data-category');
-      optionTag = '<option value="' + val + '"> ~' + val + '~ </option>';
-      if ($('#category-filter option[value="' + val + '"]').length === 0) {
-        $('#category-filter').append(optionTag);
-      }
-    }
-  });
-};
+  projectView.hideDesc = function() {
+    $('.view-description').on('click', function(event){
+      $(this).siblings('.description').children().show();
+      $(this).siblings('.description').removeClass('hidden');
+      $(this).hide();
+    });
+  };
 
-projectView.eventCategoryFilter = function() {
-  $('#category-filter').on('change', function() {
-    if ($(this).val()) {
-      var $cat = $(this).val();
-      $('article').hide();
-      $('article').filter("[data-category='" + $cat + "']").fadeIn(700);
-    } else {
-      $('article').not('article.template').show();
-    }
-  });
-};
-
-projectView.toggleMenu = function () {
-  var $menu = $('.menu-toggle');
-  $menu.on('click', function(e) {
-    e.preventDefault();
-    $('.tab-nav').toggle(400,function(){
-      if($menu.hasClass('icon-menu3')){
-        $menu.removeClass('icon-menu3').addClass('icon-menu4');
-      }else{
-        $menu.removeClass('icon-menu4').addClass('icon-menu3');
+  projectView.createFilters = function() {
+    $('article').each(function() {
+      if (!$(this).hasClass('template')) {
+        val = $(this).attr('data-category');
+        optionTag = '<option value="' + val + '"> ~' + val + '~ </option>';
+        if ($('#category-filter option[value="' + val + '"]').length === 0) {
+          $('#category-filter').append(optionTag);
+        }
       }
     });
-  });
-};
+  };
 
-//new project stuff
-projectView.initNewArticleForm = function () {
-  //hide the exported field for now
-  $('#project-export').hide();
+  projectView.eventCategoryFilter = function() {
+    $('#category-filter').on('change', function() {
+      if ($(this).val()) {
+        var $cat = $(this).val();
+        $('article').hide();
+        $('article').filter("[data-category='" + $cat + "']").fadeIn(700);
+      } else {
+        $('article').not('article.template').show();
+      }
+    });
+  };
 
-  //when the exported JSON is focused on, select it all
-  $('#exported').on('focus', function(){
-    this.select();
-  });
+  projectView.toggleMenu = function () {
+    var $menu = $('.menu-toggle');
+    $menu.on('click', function(e) {
+      e.preventDefault();
+      $('.tab-nav').toggle(400,function(){
+        if($menu.hasClass('icon-menu3')){
+          $menu.removeClass('icon-menu3').addClass('icon-menu4');
+        }else{
+          $menu.removeClass('icon-menu4').addClass('icon-menu3');
+        }
+      });
+    });
+  };
 
-  //when the input changes, build the preview and JSO
-  $('#new-proj').on('change', 'input, textarea', projectView.createNew);
-};
+  //new project stuff
+  projectView.initNewArticleForm = function () {
+    //hide the exported field for now
+    $('#project-export').hide();
 
-projectView.createNew = function() {
-  var project;
+    //when the exported JSON is focused on, select it all
+    $('#exported').on('focus', function(){
+      this.select();
+    });
 
-  $('#project-preview').empty;
+    //when the input changes, build the preview and JSO
+    $('#new-proj').on('change', 'input, textarea', projectView.createNew);
+  };
 
-  //grab the form fields and make a new project with 'em
-  project = new Project({
-    name: $('#project-name').val(),
-    url: $('#project-url').val(),
-    category: $('#project-category').val(),
-    startDate: $('#project-startDate').val(),
-    finDate: $('#project-finished').val().length ? new Date().toISOString().slice(0,10) : null,
-    description: $('#project-description').val()
-  });
+  projectView.footerHtml = function(){
+    var footTemplate = Handlebars.compile($('#footer-template').text());
 
-  $('#project-preview').append(project.toHtml());
-  $('#project-preview').show();
-  $('#new #project-preview section').removeClass('hidden');
+    var context = {
+      totalProj: Project.totalProjects(),
+      totalWords: Project.totalProjectWords()
+    };
 
-  //set the local storage to hold the data
-  localStorage.setItem('name', $('#project-name').val());
-  localStorage.setItem('url', $('#project-url').val());
-  localStorage.setItem('category', $('#project-category').val());
-  localStorage.setItem('startDate', $('#project-startDate').val());
-  localStorage.setItem('finDate', $('#project-finished').val().length ? new Date().toISOString().slice(0,10) : null);
-  localStorage.setItem('description', $('#project-description').val());
-  console.log('cache write!');
+    return footTemplate(context);
+  };
 
-  $('pre code').each(function(i, chunk){
-    hljs.highlightBlock(chunk);
-  });
+  projectView.createNew = function() {
+    var project;
 
-  $('#project-export').show();
+    $('#project-preview').empty;
 
-  $('#project-json').val(JSON.stringify(project) + ',');
-};
+    //grab the form fields and make a new project with 'em
+    project = new Project({
+      name: $('#project-name').val(),
+      url: $('#project-url').val(),
+      category: $('#project-category').val(),
+      startDate: $('#project-startDate').val(),
+      finDate: $('#project-finished').val().length ? new Date().toISOString().slice(0,10) : null,
+      description: $('#project-description').val()
+    });
 
-projectView.init = function() {
-  //oh FINE
-  Project.all.forEach(function(i){
-    $('#projects').append(i.toHtml());
-  });
+    $('#project-preview').append(project.toHtml());
+    $('#project-preview').show();
+    $('#new #project-preview section').removeClass('hidden');
 
-  //load up whatever tab the user was on previously
-  localStorage.currTab ? projectView.initTab(): null;
+    //set the local storage to hold the data
+    localStorage.setItem('name', $('#project-name').val());
+    localStorage.setItem('url', $('#project-url').val());
+    localStorage.setItem('category', $('#project-category').val());
+    localStorage.setItem('startDate', $('#project-startDate').val());
+    localStorage.setItem('finDate', $('#project-finished').val().length ? new Date().toISOString().slice(0,10) : null);
+    localStorage.setItem('description', $('#project-description').val());
+    console.log('cache write!');
 
-  //if there's local date for the fields, load it in. Else do nothing.
-  localStorage.name ? $('#project-name').val(localStorage.getItem('name')) : null;
-  localStorage.url ? $('#project-url').val(localStorage.getItem('url')) : null;
-  localStorage.category ? $('#project-category').val(localStorage.getItem('category')) : null;
-  localStorage.startDate ? $('#project-startDate').val(localStorage.getItem('startDate')) : null;
-  localStorage.finDate ? $('#project-finished').val(localStorage.getItem('finDate')) : null;
-  localStorage.description ? $('#project-description').val(localStorage.getItem('description')) : null;
-  console.log('cache hit!');
+    $('pre code').each(function(i, chunk){
+      hljs.highlightBlock(chunk);
+    });
 
-  projectView.tabNav();
-  projectView.hideDesc();
-  projectView.createFilters();
-  projectView.eventCategoryFilter();
-  projectView.toggleMenu();
-  projectView.initNewArticleForm();
-};
+    $('#project-export').show();
+
+    $('#project-json').val(JSON.stringify(project) + ',');
+  };
+
+  projectView.init = function() {
+    //oh FINE
+    Project.all.forEach(function(i){
+      $('#projects').append(i.toHtml());
+    });
+
+    $('footer ul').append(projectView.footerHtml());
+    
+    //load up whatever tab the user was on previously
+    localStorage.currTab ? projectView.initTab(): null;
+
+    //if there's local date for the fields, load it in. Else do nothing.
+    localStorage.name ? $('#project-name').val(localStorage.getItem('name')) : null;
+    localStorage.url ? $('#project-url').val(localStorage.getItem('url')) : null;
+    localStorage.category ? $('#project-category').val(localStorage.getItem('category')) : null;
+    localStorage.startDate ? $('#project-startDate').val(localStorage.getItem('startDate')) : null;
+    localStorage.finDate ? $('#project-finished').val(localStorage.getItem('finDate')) : null;
+    localStorage.description ? $('#project-description').val(localStorage.getItem('description')) : null;
+    console.log('cache hit!');
+
+    projectView.tabNav();
+    projectView.hideDesc();
+    projectView.createFilters();
+    projectView.eventCategoryFilter();
+    projectView.toggleMenu();
+    projectView.initNewArticleForm();
+  };
+
+  module.projectView = projectView;
+})(window);
