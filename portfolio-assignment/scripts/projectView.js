@@ -3,6 +3,7 @@
   var projectView = {};
 
   projectView.initTab = function() {
+    //this is kinda slow
     $('.tab-section').hide();
     $('#'+ localStorage.getItem('currTab')).show();
     console.log('cache hit!');
@@ -18,6 +19,7 @@
     });
   };
 
+  //should I put in a link to hide the description again?
   projectView.hideDesc = function() {
     $('.view-description').on('click', function(event){
       $(this).siblings('.description').children().show();
@@ -28,12 +30,10 @@
 
   projectView.createFilters = function() {
     $('article').each(function() {
-      if (!$(this).hasClass('template')) {
-        val = $(this).attr('data-category');
-        optionTag = '<option value="' + val + '"> ~' + val + '~ </option>';
-        if ($('#category-filter option[value="' + val + '"]').length === 0) {
-          $('#category-filter').append(optionTag);
-        }
+      val = $(this).attr('data-category');
+      optionTag = '<option value="' + val + '"> ~ ' + val + ' ~ </option>';
+      if ($('#category-filter option[value="' + val + '"]').length === 0) {
+        $('#category-filter').append(optionTag);
       }
     });
   };
@@ -74,7 +74,7 @@
       this.select();
     });
 
-    //when the input changes, build the preview and JSO
+    //when the input changes, build the preview and JSON
     $('#new-proj').on('change', 'input, textarea', projectView.createNew);
   };
 
@@ -95,6 +95,11 @@
     $('#project-preview').empty;
 
     //grab the form fields and make a new project with 'em
+
+    $('#new-proj input, textarea').each(function(){
+      console.log($(this).val());
+    });
+
     project = new Project({
       name: $('#project-name').val(),
       url: $('#project-url').val(),
@@ -133,11 +138,11 @@
     });
 
     $('footer ul').append(projectView.footerHtml());
-    
+
     //load up whatever tab the user was on previously
     localStorage.currTab ? projectView.initTab(): null;
 
-    //if there's local date for the fields, load it in. Else do nothing.
+    //if there's local data for the fields, load it in. Else do nothing.
     localStorage.name ? $('#project-name').val(localStorage.getItem('name')) : null;
     localStorage.url ? $('#project-url').val(localStorage.getItem('url')) : null;
     localStorage.category ? $('#project-category').val(localStorage.getItem('category')) : null;

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/modules.css">
 
     <script id="project-template" type="text/x-handlebars-template">
-    <article class="">
+    <article class="" data-category="{{category}}">
       <header>
         <a href="{{url}}">{{name}}</a>
         <div class="info">Project started on <time>{{startDate}}</time> and completed on <time>{{finDate}}</time></div>
@@ -92,7 +92,7 @@
         <h2>My Projects</h2>
 
         <select id="category-filter">
-          <option value=""> ~Filter by Categories~ </option>
+          <option value=""> ~ Filter by Categories ~ </option>
         </select>
       </section>
 

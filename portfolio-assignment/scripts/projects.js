@@ -1,10 +1,10 @@
 (function(module) {
 
   function Project(args){
-    i = this; //so context is not lost inside the loop, we create a new variable to hold our values
-    $.each(args, function(key, value){
-      i[key] = value;
-    });
+    //updating to the less-hacky way to do it
+    Object.keys(args).forEach(function(k, index, keys){
+      this[k] = args[k];
+    },this);
   };
 
   Project.all = [];
@@ -22,13 +22,15 @@
     $.ajax('/data/data.json', {
       method: 'HEAD',
       success: function(data, msg, xhr){
-        console.log(xhr.getResponseHeader('eTag'));
         etag = xhr.getResponseHeader('eTag');
 
+        //once we have that, check if it matches what's in local storage
         if(localStorage.etag == etag){
+          //if yes, just use that
           Project.loadData(JSON.parse(localStorage.testData));
           projectView.init();
         }else{
+          //else get the data from the changed JSON, then load the JSON into local data.
           $.getJSON('/data/data.json', function(testData){
             console.log('Run callback');
             Project.loadData(testData);
@@ -49,8 +51,11 @@
   //how many words we wasted on the description in each project
   Project.totalProjectWords = function() {
     return Project.all.map(function(proj) {
-      //make this a proper word-counting regex when I care more
-      var words = proj.description.split(' ');
+      //GET REGEXED
+      //Actually helpful comment: This regex finds the boundaries of words, followed by one or more word characters, followed by another word boundary. So it's a word-counter.
+      //The special part is it doesn't match word characters that start with pointy bracket or pointy bracket plus frontslash. Net result: doesn't count HTML tags.
+      var re = /\b|[^<\/]\w+\b/;
+      var words = proj.description.split(re);
       return words.length;
     }).reduce(function(a, b){
       return (a + b);
