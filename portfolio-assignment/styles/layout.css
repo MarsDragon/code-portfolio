@@ -37,3 +37,7 @@ select{
   margin: 1em;
   background-color: #202020;
 }
+
+header div{
+  margin: auto;
+}

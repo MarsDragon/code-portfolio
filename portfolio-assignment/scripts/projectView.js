@@ -5,7 +5,7 @@
   projectView.initTab = function() {
     //this is kinda slow
     $('.tab-section').hide();
-    $('#'+ localStorage.getItem('currTab')).show();
+    localStorage.currTab ? $('#'+ localStorage.getItem('currTab')).show() : $('#about').show();
     console.log('cache hit!');
   };
 
@@ -67,7 +67,14 @@
   //new project stuff
   projectView.initNewArticleForm = function () {
     //hide the exported field for now
-    $('#project-export').hide();
+    $('#exported').hide();
+
+    //if there's local data for the fields, load it in. Else do nothing.
+    $('#new-proj input, textarea').each(function(i){
+      var $name = $(this).attr('name');
+      localStorage[$name] ? $(this).val(localStorage.getItem($name)) : null;
+    });
+    console.log('cache hit!');
 
     //when the exported JSON is focused on, select it all
     $('#exported').on('focus', function(){
@@ -90,67 +97,43 @@
   };
 
   projectView.createNew = function() {
-    var project;
+    var project = new Project({});
 
     $('#project-preview').empty;
 
-    //grab the form fields and make a new project with 'em
-
-    $('#new-proj input, textarea').each(function(){
-      console.log($(this).val());
+    //this is the clever bit
+    //loop over the input and the textareas, grabbing out the name/values and using those as the key/values in the object
+    $('#new-proj input, textarea').each(function(i){
+      var $name = $(this).attr('name');
+      project[$name] = $(this).val();
+      //slip the localStorage in here too, why not
+      localStorage.setItem($name, $(this).val());
     });
+    console.log('cache write!');
 
-    project = new Project({
-      name: $('#project-name').val(),
-      url: $('#project-url').val(),
-      category: $('#project-category').val(),
-      startDate: $('#project-startDate').val(),
-      finDate: $('#project-finished').val().length ? new Date().toISOString().slice(0,10) : null,
-      description: $('#project-description').val()
-    });
-
-    $('#project-preview').append(project.toHtml());
+    $('#project-preview').html(project.toHtml());
     $('#project-preview').show();
     $('#new #project-preview section').removeClass('hidden');
-
-    //set the local storage to hold the data
-    localStorage.setItem('name', $('#project-name').val());
-    localStorage.setItem('url', $('#project-url').val());
-    localStorage.setItem('category', $('#project-category').val());
-    localStorage.setItem('startDate', $('#project-startDate').val());
-    localStorage.setItem('finDate', $('#project-finished').val().length ? new Date().toISOString().slice(0,10) : null);
-    localStorage.setItem('description', $('#project-description').val());
-    console.log('cache write!');
 
     $('pre code').each(function(i, chunk){
       hljs.highlightBlock(chunk);
     });
 
-    $('#project-export').show();
+    $('#exported').show();
 
     $('#project-json').val(JSON.stringify(project) + ',');
   };
 
   projectView.init = function() {
-    //oh FINE
+    //loop over all Projects, append them to the DOM
     Project.all.forEach(function(i){
       $('#projects').append(i.toHtml());
     });
 
     $('footer ul').append(projectView.footerHtml());
 
-    //load up whatever tab the user was on previously
-    localStorage.currTab ? projectView.initTab(): null;
-
-    //if there's local data for the fields, load it in. Else do nothing.
-    localStorage.name ? $('#project-name').val(localStorage.getItem('name')) : null;
-    localStorage.url ? $('#project-url').val(localStorage.getItem('url')) : null;
-    localStorage.category ? $('#project-category').val(localStorage.getItem('category')) : null;
-    localStorage.startDate ? $('#project-startDate').val(localStorage.getItem('startDate')) : null;
-    localStorage.finDate ? $('#project-finished').val(localStorage.getItem('finDate')) : null;
-    localStorage.description ? $('#project-description').val(localStorage.getItem('description')) : null;
-    console.log('cache hit!');
-
+    //set up all the events
+    projectView.initTab();
     projectView.tabNav();
     projectView.hideDesc();
     projectView.createFilters();

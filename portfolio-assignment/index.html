@@ -31,6 +31,7 @@
     <main>
       <header>
         <h1>The Online Portfolio of Amy Leek</h1>
+        <div><img src="img/dec-border.png"></div>
       </header>
 
       <nav>
@@ -55,32 +56,33 @@
           <form action="#" id="new-proj">
             <label>
               <span class="grid-3">Name:</span>
-              <input type="text" id="project-name" placeholder="Project Name" required>
+              <input type="text" name="name" placeholder="Project Name" required>
             </label>
             <label>
               <span class="grid-3">Url:</span>
-              <input type="text" id="project-url" placeholder="Project URL" required>
+              <input type="text" name="url" placeholder="Project URL" required>
             </label>
             <label>
               <span class="grid-3">Category:</span>
-              <input type="text" id="project-category" placeholder="Category" required>
+              <input type="text" name="category" placeholder="Category" required>
             </label>
             <label>
               <span class="grid-3">Started on:</span>
-              <input type="date" id="project-startDate" required>
+              <input type="date" name="startDate" required>
+            </label>
+            <label>
+              <span class="grid-3">Finished on:</span>
+              <input type="date" name="finDate" required>
             </label>
             <label>
               <span class="grid-5">Description:</span>
-              <textarea id="project-description" rows="8" cols="40" required></textarea>
-            </label>
-            <label>
-              Finished: <input type="checkbox" id="project-finished">
+              <textarea name="description" rows="8" cols="40" required></textarea>
             </label>
           </form>
         <section id="project-preview" class="tab-section">
           <!-- Preview will load here based on the above template-->
         </section>
-        <section id="project-export">
+        <section>
           <label id="exported" for="project-json" class="pull-right">
             <input type="text" readonly id="project-json" class="grid-5">
             <span class="grid-5" >When finalized, copy the above JSON, and paste into data.js</span>
@@ -113,7 +115,7 @@
 
     <script>
       //call it here for now
-      Project.fetchData();
+      Project.fetchData(projectView.init);
     </script>
   </body>
 </html>
