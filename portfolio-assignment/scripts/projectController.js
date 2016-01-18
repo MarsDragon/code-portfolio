@@ -7,8 +7,25 @@
   };
 
   projectController.list = function() {
+    Project.fetchData();
     $('main > section').hide();
     $('#projects').show();
+  };
+
+  projectController.single = function(ctx) {
+    //this isn't great
+    Project.fetchData();
+
+    $('main > section').hide();
+
+    Project.all.some(function(i){
+      if(i.frag == '/projects/' + ctx.params.projectName){
+        $('#project').html(i.toHtml());
+        return true;
+      }
+    });
+    
+    $('#project').show();
   };
 
   projectController.new = function() {

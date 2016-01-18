@@ -128,11 +128,12 @@
 
   projectView.init = function() {
     //loop over all Projects, append them to the DOM
-    Project.all.forEach(function(i){
-      $('#projects').append(i.toHtml());
-    });
-
-    $('footer ul').append(projectView.footerHtml());
+    if($('#projects article').length == 0){
+      Project.all.forEach(function(i){
+        $('#projects').append(i.toHtml());
+      });
+    }
+    $('footer ul').html(projectView.footerHtml());
 
     //set up all the events
     // projectView.initTab();
