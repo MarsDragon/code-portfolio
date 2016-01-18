@@ -6,6 +6,11 @@
     $('#about').show();
   };
 
+  projectController.resume = function() {
+    $('main > section').hide();
+    $('#resume').show();
+  };
+
   projectController.list = function() {
     Project.fetchData();
     $('main > section').hide();
@@ -24,7 +29,7 @@
         return true;
       }
     });
-    
+
     $('#project').show();
   };
 
