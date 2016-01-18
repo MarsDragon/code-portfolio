@@ -2,22 +2,24 @@
 
   var projectView = {};
 
-  projectView.initTab = function() {
-    //this is kinda slow
-    $('.tab-section').hide();
-    localStorage.currTab ? $('#'+ localStorage.getItem('currTab')).show() : $('#about').show();
-    console.log('cache hit!');
-  };
+  //rip
+  // projectView.initTab = function() {
+  //   //this is kinda slow
+  //   $('.tab-section').hide();
+  //   localStorage.currTab ? $('#'+ localStorage.getItem('currTab')).show() : $('#about').show();
+  //   console.log('cache hit!');
+  // };
 
-  projectView.tabNav = function() {
-    $('.tab').on('click', function(event){
-      var $content = $(this).data('content');
-      $('.tab-section').hide();
-      $('#'+ $content).fadeIn(700);
-      localStorage.setItem('currTab', $content);
-      console.log('cache write!');
-    });
-  };
+  //double rip
+  // projectView.tabNav = function() {
+  //   $('.tab').on('click', function(event){
+  //     var $content = $(this).data('content');
+  //     $('.tab-section').hide();
+  //     $('#'+ $content).fadeIn(700);
+  //     localStorage.setItem('currTab', $content);
+  //     console.log('cache write!');
+  //   });
+  // };
 
   //should I put in a link to hide the description again?
   projectView.hideDesc = function() {
@@ -133,8 +135,8 @@
     $('footer ul').append(projectView.footerHtml());
 
     //set up all the events
-    projectView.initTab();
-    projectView.tabNav();
+    // projectView.initTab();
+    // projectView.tabNav();
     projectView.hideDesc();
     projectView.createFilters();
     projectView.eventCategoryFilter();
