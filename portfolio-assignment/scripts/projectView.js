@@ -2,24 +2,26 @@
 
   var projectView = {};
 
-  //rip
-  // projectView.initTab = function() {
-  //   //this is kinda slow
-  //   $('.tab-section').hide();
-  //   localStorage.currTab ? $('#'+ localStorage.getItem('currTab')).show() : $('#about').show();
-  //   console.log('cache hit!');
-  // };
+  var createFilters = function() {
+    $('article').each(function() {
+      val = $(this).attr('data-category');
+      optionTag = '<option value="' + val + '"> ~ ' + val + ' ~ </option>';
+      if ($('#category-filter option[value="' + val + '"]').length === 0) {
+        $('#category-filter').append(optionTag);
+      }
+    });
+  };
 
-  //double rip
-  // projectView.tabNav = function() {
-  //   $('.tab').on('click', function(event){
-  //     var $content = $(this).data('content');
-  //     $('.tab-section').hide();
-  //     $('#'+ $content).fadeIn(700);
-  //     localStorage.setItem('currTab', $content);
-  //     console.log('cache write!');
-  //   });
-  // };
+  var footerHtml = function(){
+    var footTemplate = Handlebars.compile($('#footer-template').text());
+
+    var context = {
+      totalProj: Project.totalProjects(),
+      totalWords: Project.totalProjectWords()
+    };
+
+    return footTemplate(context);
+  };
 
   //should I put in a link to hide the description again?
   projectView.hideDesc = function() {
@@ -27,16 +29,6 @@
       $(this).siblings('.description').children().show();
       $(this).siblings('.description').removeClass('hidden');
       $(this).hide();
-    });
-  };
-
-  projectView.createFilters = function() {
-    $('article').each(function() {
-      val = $(this).attr('data-category');
-      optionTag = '<option value="' + val + '"> ~ ' + val + ' ~ </option>';
-      if ($('#category-filter option[value="' + val + '"]').length === 0) {
-        $('#category-filter').append(optionTag);
-      }
     });
   };
 
@@ -87,17 +79,6 @@
     $('#new-proj').on('change', 'input, textarea', projectView.createNew);
   };
 
-  projectView.footerHtml = function(){
-    var footTemplate = Handlebars.compile($('#footer-template').text());
-
-    var context = {
-      totalProj: Project.totalProjects(),
-      totalWords: Project.totalProjectWords()
-    };
-
-    return footTemplate(context);
-  };
-
   projectView.createNew = function() {
     var project = new Project({});
 
@@ -133,13 +114,11 @@
         $('#projects').append(i.toHtml());
       });
     }
-    $('footer ul').html(projectView.footerHtml());
+    $('footer ul').html(footerHtml());
 
     //set up all the events
-    // projectView.initTab();
-    // projectView.tabNav();
+    createFilters();
     projectView.hideDesc();
-    projectView.createFilters();
     projectView.eventCategoryFilter();
     projectView.toggleMenu();
     projectView.initNewArticleForm();

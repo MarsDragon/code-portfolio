@@ -1,7 +1,7 @@
 (function(module){
   var githubView = {};
 
-  githubView.add = function(type, ele){
+  var add = function(type, ele){
     if(type == 'repos'){
       return '<li><a href="'+ ele.url + '">' + ele.name + '</a></li>';
     }else{
@@ -15,12 +15,12 @@
 
   githubView.init = function(type){
     //I'm not sure if this is genius or madness
-    var call = 'githubView.add' + type;
+    // var call = 'add' + type;
 
     $('#'+type).append(
       github.all.map(
         function(ele){
-          return githubView.add(type, ele);
+          return add(type, ele);
         }
       )
     );

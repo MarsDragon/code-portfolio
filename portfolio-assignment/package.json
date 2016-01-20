@@ -1,0 +1,15 @@
+{
+  "name": "mvc-portfolio",
+  "version": "1.0.0",
+  "description": "My personal portfolio",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amy Leek",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "express-request-proxy": "^1.0.10"
+  }
+}
