@@ -18,6 +18,7 @@
         if(localStorage.gitEtag == etag){
           //if yes, just use that
           github.all = JSON.parse(localStorage[type]);
+          callback(type);
         }else{
           $.ajax({
             url: 'https://api.github.com/users/MarsDragon/' + type + qs,
