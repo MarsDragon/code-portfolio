@@ -8,15 +8,13 @@
       if(ele.type == 'IssueCommentEvent'){
         return '<li><a href=\''+ ele.payload.comment.html_url + '\'>' + ele.type + '</a></li>';
       }else{
-        return '<li><a href="'+ ele.repo.url + '">' + ele.type + '</a></li>';
+        return '<li><a href="'+ ele.repo.url + '">' + ele.type + '</a> to '+ ele.repo.name +'</li>';
       }
     }
   };
 
   githubView.init = function(type){
     //I'm not sure if this is genius or madness
-    // var call = 'add' + type;
-
     $('#'+type).append(
       github.all.map(
         function(ele){

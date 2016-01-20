@@ -3,7 +3,7 @@
   var projectView = {};
 
   var createFilters = function() {
-    $('article').each(function() {
+    $('#projects article').each(function() {
       val = $(this).attr('data-category');
       optionTag = '<option value="' + val + '"> ~ ' + val + ' ~ </option>';
       if ($('#category-filter option[value="' + val + '"]').length === 0) {
