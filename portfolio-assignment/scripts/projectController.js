@@ -11,6 +11,11 @@
     $('#resume').show().siblings().hide();
   };
 
+  projectController.resume = function() {
+    $('main > section').hide();
+    $('#resume').show();
+  };
+
   projectController.list = function() {
     Project.fetchData();
     $('#projects').show().siblings().hide();

@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width" initial-scale="1">
     <title>Amy's Portfolio</title>
-    <link rel="stylesheet" href="styles/normalize.css">
-    <link rel="stylesheet" href="styles/icons.css">
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/layout.css">
-    <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/icons.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/modules.css">
 
     <script id="project-template" type="text/x-handlebars-template">
     <article class="" data-category="{{category}}">
       <header>
-        <a href="{{url}}">{{name}}</a>
+        <a href="{{frag}}">{{name}}</a>
         <div class="info">Project started on <time>{{startDate}}</time> and completed on <time>{{finDate}}</time></div>
+        <div class="info"><a href="{{url}}">Github link</a></div>
       </header>
       <section class="description hidden">{{{description}}}</section>
       <p class="view-description">View full description</p>
@@ -86,7 +87,7 @@
             </label>
           </form>
         <section id="project-preview" class="tab-section">
-          <!-- Preview will load here based on the above template-->
+          <!--Preview will load here based on the above template-->
         </section>
         <section>
           <label id="exported" for="project-json" class="pull-right">
@@ -179,10 +180,11 @@
         <li>Copyright Amy Leek, 2016</li>
       </ul>
     </footer>
-    <script src="scripts/vendor/jquery-2.1.4.js"></script>
+    <script src="/scripts/vendor/jquery-2.1.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
-    <script src="scripts/vendor/marked.js"></script>
-    <script src="scripts/vendor/highlight.pack.js"></script>
+    <script src="/scripts/vendor/marked.js"></script>
+    <script src="/scripts/vendor/highlight.pack.js"></script>
+    <script src="/scripts/vendor/page.js"></script>
 
     <script src="/scripts/projects.js"></script>
     <script src="/scripts/projectController.js"></script>
@@ -191,6 +193,7 @@
     <script src="/scripts/gitAuth.js"></script>
     <script src="/scripts/github.js"></script>
     <script src="/scripts/githubView.js"></script>
+
     <script src="/scripts/routes.js"></script>
   </body>
 </html>
