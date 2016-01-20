@@ -1,15 +1,25 @@
 {
-  "name": "mvc-portfolio",
+  "name": "portfolio-assignment",
   "version": "1.0.0",
-  "description": "My personal portfolio",
+  "description": "Heroku class 13",
   "main": "server.js",
+  "dependencies": {
+    "express-request-proxy": "^1.0.11",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarsDragon/code-portfolio.git"
   },
   "author": "amyeleek@gmail.com",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.13.3",
-    "express-request-proxy": "^1.0.10"
-  }
+  "bugs": {
+    "url": "https://github.com/MarsDragon/code-portfolio/issues"
+  },
+  "homepage": "https://github.com/MarsDragon/code-portfolio#readme"
 }
