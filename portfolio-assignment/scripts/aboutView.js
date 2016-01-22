@@ -3,13 +3,16 @@
 
   var add = function(type, ele){
     //move this to index and templates
+
+    var template = Handlebars.compile($('#git-template').text());
+
     if(type == 'repos'){
-      return '<li><a href="'+ ele.url + '">' + ele.name + '</a></li>';
+      return template({url: ele.url, name: ele.name});
     }else{
       if(ele.type == 'IssueCommentEvent'){
-        return '<li><a href=\''+ ele.payload.comment.html_url + '\'>' + ele.type + '</a></li>';
+        return template({url: ele.payload.comment.html_url, name: ele.type});
       }else{
-        return '<li><a href="'+ ele.repo.url + '">' + ele.type + '</a> to '+ ele.repo.name +'</li>';
+        return template({url: ele.repo.url, name: ele.type, repo: ele.repo.name});
       }
     }
   };

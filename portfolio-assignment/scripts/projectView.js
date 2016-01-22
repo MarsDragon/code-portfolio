@@ -3,11 +3,10 @@
   var projectView = {};
 
   //should I put in a link to hide the description again?
-  projectView.hideDesc = function() {
+  projectView.revealDesc = function() {
     $('.view-description').on('click', function(event){
-      $(this).siblings('.description').children().show();
-      $(this).siblings('.description').removeClass('hidden');
-      $(this).hide();
+      //Get the sibling description, remove its class .hidden, hide it, show its children
+      $(this).siblings('.description').removeClass('hidden').hide().children().show();
     });
   };
 
@@ -76,9 +75,10 @@
     $('#projects').show().siblings().hide();
 
     //set up all the events
-    projectView.hideDesc();
+    projectView.revealDesc();
     projectView.initNewArticleForm();
 
+    //kludy, but have to do it this way until I add page.always()
     navView.init();
     navView.footerInit();
   };

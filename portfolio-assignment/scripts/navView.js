@@ -5,6 +5,7 @@
   var footerHtml = function(){
     var footTemplate = Handlebars.compile($('#footer-template').text());
 
+    //is there a way to instantiate this asynchonously?
     var context = {
       totalProj: Project.totalProjects(),
       totalWords: Project.totalProjectWords()

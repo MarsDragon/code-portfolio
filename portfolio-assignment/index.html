@@ -26,6 +26,14 @@
         <li>Other info: Total Projects {{totalProj}}, Total Project Words {{totalWords}}</li>
     </script>
 
+    <script id="git-template" type="text/x-handlebars-template">
+        <li><a href="{{url}}">{{name}}
+        {{#if repo}}
+          to {{repo}}
+        {{/if}}
+        </a></li>
+    </script>
+
   </head>
 
   <body>
@@ -116,7 +124,6 @@
       </section>
 
       <section id="resume" class="tab-section">
-        <!-- Put resume here -->
         <h2>My Resume</h2>
         <h3>Employment</h3>
         <article>
