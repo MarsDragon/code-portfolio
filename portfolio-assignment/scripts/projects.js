@@ -28,15 +28,14 @@
         if(localStorage.etag == etag){
           //if yes, just use that
           Project.loadData(JSON.parse(localStorage.testData));
-          //someday figure out how to properly do the callback I want to do here
-          projectView.init();
+          callback();
         }else{
           //else get the data from the changed JSON, then load the JSON into local data.
           $.getJSON('/data/data.json', function(testData){
             Project.loadData(testData);
             localStorage.setItem('testData', JSON.stringify(testData));
             localStorage.setItem('etag', etag);
-            projectView.init();
+            callback();
           });
         }
       }

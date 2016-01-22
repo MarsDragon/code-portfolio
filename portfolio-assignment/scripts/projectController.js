@@ -1,29 +1,27 @@
 (function(module) {
   var projectController = {};
 
-  projectController.about = function() {
+  projectController.about = function(ctx, next) {
     $('#about').show().siblings().hide();
     github.getData('repos', githubView.init);
     github.getData('events', githubView.init);
+    next();
   };
 
-  projectController.resume = function() {
+  projectController.resume = function(ctx, next) {
     $('#resume').show().siblings().hide();
+    next();
   };
 
-  projectController.resume = function() {
-    $('main > section').hide();
-    $('#resume').show();
-  };
-
-  projectController.list = function() {
-    Project.fetchData();
+  projectController.list = function(ctx, next) {
+    Project.fetchData(projectView.init);
     $('#projects').show().siblings().hide();
+    next();
   };
 
-  projectController.single = function(ctx) {
+  projectController.single = function(ctx, next) {
     //this isn't great
-    Project.fetchData();
+    Project.fetchData(projectView.init);
 
     Project.all.some(function(i){
       if(i.frag == '/projects/' + ctx.params.projectName){
@@ -33,16 +31,18 @@
     });
 
     $('#project').show().siblings().hide();
+
+    next();
   };
 
-  projectController.new = function() {
-    $('main > section').hide();
-    $('#new').show();
+  projectController.new = function(ctx, next) {
+    $('#new').show().siblings().hide();
+    next();
   };
 
-  projectController.notFound = function() {
-    $('main > section').hide();
-    $('#notFound').show();
+  projectController.notFound = function(ctx, next) {
+    $('#notFound').show().siblings().hide();
+    next();
   };
 
   module.projectController = projectController;

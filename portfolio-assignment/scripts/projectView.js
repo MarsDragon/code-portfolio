@@ -2,26 +2,15 @@
 
   var projectView = {};
 
-  var createFilters = function() {
-    $('#projects article').each(function() {
-      val = $(this).attr('data-category');
-      optionTag = '<option value="' + val + '"> ~ ' + val + ' ~ </option>';
-      if ($('#category-filter option[value="' + val + '"]').length === 0) {
-        $('#category-filter').append(optionTag);
-      }
-    });
-  };
-
-  var footerHtml = function(){
-    var footTemplate = Handlebars.compile($('#footer-template').text());
-
-    var context = {
-      totalProj: Project.totalProjects(),
-      totalWords: Project.totalProjectWords()
-    };
-
-    return footTemplate(context);
-  };
+  // var createFilters = function() {
+  //   $('#projects article').each(function() {
+  //     val = $(this).attr('data-category');
+  //     optionTag = '<option value="' + val + '"> ~ ' + val + ' ~ </option>';
+  //     if ($('#category-filter option[value="' + val + '"]').length === 0) {
+  //       $('#category-filter').append(optionTag);
+  //     }
+  //   });
+  // };
 
   //should I put in a link to hide the description again?
   projectView.hideDesc = function() {
@@ -32,31 +21,22 @@
     });
   };
 
-  projectView.eventCategoryFilter = function() {
-    $('#category-filter').on('change', function() {
-      if ($(this).val()) {
-        var $cat = $(this).val();
-        $('article').hide();
-        $('article').filter("[data-category='" + $cat + "']").fadeIn(700);
-      } else {
-        $('article').not('article.template').show();
-      }
-    });
+  projectView.showDesc = function() {
+    $('.description').removeClass('hidden');
   };
 
-  projectView.toggleMenu = function () {
-    var $menu = $('.menu-toggle');
-    $menu.on('click', function(e) {
-      e.preventDefault();
-      $('.tab-nav').toggle(400,function(){
-        if($menu.hasClass('icon-menu3')){
-          $menu.removeClass('icon-menu3').addClass('icon-menu4');
-        }else{
-          $menu.removeClass('icon-menu4').addClass('icon-menu3');
-        }
-      });
-    });
-  };
+  //I don't think I actually care
+  // projectView.eventCategoryFilter = function() {
+  //   $('#category-filter').on('change', function() {
+  //     if ($(this).val()) {
+  //       var $cat = $(this).val();
+  //       $('article').hide();
+  //       $('article').filter("[data-category='" + $cat + "']").fadeIn(700);
+  //     } else {
+  //       $('article').not('article.template').show();
+  //     }
+  //   });
+  // };
 
   //new project stuff
   projectView.initNewArticleForm = function () {
@@ -114,14 +94,13 @@
         $('#projects').append(i.toHtml());
       });
     }
-    $('footer ul').html(footerHtml());
 
     //set up all the events
-    createFilters();
+    // createFilters();
     projectView.hideDesc();
-    projectView.eventCategoryFilter();
-    projectView.toggleMenu();
+    // projectView.eventCategoryFilter();
     projectView.initNewArticleForm();
+    navView.footerInit();
   };
 
   module.projectView = projectView;
