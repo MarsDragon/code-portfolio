@@ -14,7 +14,7 @@
     }
   };
 
-  aboutView.init = function(type){
+  aboutView.displayData = function(type){
     //I'm not sure if this is genius or madness
     $('#'+type).append(
       about.all.map(
@@ -23,6 +23,13 @@
         }
       )
     );
+
+    //temp until I get page working right
+    aboutView.init();
+  };
+
+  aboutView.init = function(type){
+    $('#about').show().siblings().hide();
   };
 
   module.aboutView = aboutView;

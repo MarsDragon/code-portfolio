@@ -2,16 +2,6 @@
 
   var projectView = {};
 
-  // var createFilters = function() {
-  //   $('#projects article').each(function() {
-  //     val = $(this).attr('data-category');
-  //     optionTag = '<option value="' + val + '"> ~ ' + val + ' ~ </option>';
-  //     if ($('#category-filter option[value="' + val + '"]').length === 0) {
-  //       $('#category-filter').append(optionTag);
-  //     }
-  //   });
-  // };
-
   //should I put in a link to hide the description again?
   projectView.hideDesc = function() {
     $('.view-description').on('click', function(event){
@@ -24,19 +14,6 @@
   projectView.showDesc = function() {
     $('.description').removeClass('hidden');
   };
-
-  //I don't think I actually care
-  // projectView.eventCategoryFilter = function() {
-  //   $('#category-filter').on('change', function() {
-  //     if ($(this).val()) {
-  //       var $cat = $(this).val();
-  //       $('article').hide();
-  //       $('article').filter("[data-category='" + $cat + "']").fadeIn(700);
-  //     } else {
-  //       $('article').not('article.template').show();
-  //     }
-  //   });
-  // };
 
   //new project stuff
   projectView.initNewArticleForm = function () {
@@ -87,7 +64,7 @@
     $('#project-json').val(JSON.stringify(project) + ',');
   };
 
-  projectView.init = function() {
+  projectView.listInit = function() {
     //loop over all Projects, append them to the DOM
     if($('#projects article').length == 0){
       Project.all.forEach(function(i){
@@ -95,12 +72,25 @@
       });
     }
 
+    $('#projects').show().siblings().hide();
+
     //set up all the events
-    // createFilters();
     projectView.hideDesc();
-    // projectView.eventCategoryFilter();
     projectView.initNewArticleForm();
     navView.footerInit();
+  };
+
+  projectView.singleInit = function() {
+    Project.all.some(function(i){
+      if(i.frag == '/projects/' + ctx.params.projectName){
+        $('#project').html(i.toHtml());
+        return true;
+      }
+    });
+
+    $('#project').show().siblings().hide();
+
+    projectView.showDesc();
   };
 
   module.projectView = projectView;
