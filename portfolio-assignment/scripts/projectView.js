@@ -77,6 +77,8 @@
     //set up all the events
     projectView.hideDesc();
     projectView.initNewArticleForm();
+
+    navView.init();
     navView.footerInit();
   };
 
@@ -91,6 +93,8 @@
     $('#project').show().siblings().hide();
 
     projectView.showDesc();
+
+    navView.init();
   };
 
   module.projectView = projectView;

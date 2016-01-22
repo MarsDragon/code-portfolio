@@ -23,13 +23,12 @@
         }
       )
     );
-
-    //temp until I get page working right
-    aboutView.init();
   };
 
   aboutView.init = function(type){
     $('#about').show().siblings().hide();
+
+    navView.init();
   };
 
   module.aboutView = aboutView;

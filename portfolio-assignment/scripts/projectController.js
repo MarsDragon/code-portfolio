@@ -7,30 +7,24 @@
     next();
   };
 
-  projectController.resume = function(ctx, next) {
+  projectController.resume = function() {
     resumeView.init();
-    next();
   };
 
-  projectController.list = function(ctx, next) {
+  projectController.list = function() {
     Project.fetchData(projectView.listInit);
-    next();
   };
 
-  projectController.single = function(ctx, next) {
-    //this isn't great
+  projectController.single = function() {
     Project.fetchData(projectView.singleInit);
-    next();
   };
 
-  projectController.new = function(ctx, next) {
+  projectController.new = function() {
     $('#new').show().siblings().hide();
-    next();
   };
 
-  projectController.notFound = function(ctx, next) {
+  projectController.notFound = function() {
     $('#notFound').show().siblings().hide();
-    next();
   };
 
   module.projectController = projectController;

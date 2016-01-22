@@ -4,6 +4,8 @@
 
   resumeView.init = function(){
     $('#resume').show().siblings().hide();
+
+    navView.init();
   };
 
   module.resumeView = resumeView
