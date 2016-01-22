@@ -16,7 +16,7 @@
     });
   };
 
-  Project.fetchData = function(callback) {
+  Project.fetchData = function(callback, projectName) {
     var etag = '';
     //start off by grabbing etag to check if JSON has been changed
     $.ajax('/data/data.json', {
@@ -28,14 +28,14 @@
         if(localStorage.etag == etag){
           //if yes, just use that
           Project.loadData(JSON.parse(localStorage.testData));
-          callback();
+          callback(projectName);
         }else{
           //else get the data from the changed JSON, then load the JSON into local data.
           $.getJSON('/data/data.json', function(testData){
             Project.loadData(testData);
             localStorage.setItem('testData', JSON.stringify(testData));
             localStorage.setItem('etag', etag);
-            callback();
+            callback(projectName);
           });
         }
       }

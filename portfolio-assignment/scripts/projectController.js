@@ -15,8 +15,11 @@
     Project.fetchData(projectView.listInit);
   };
 
-  projectController.single = function() {
-    Project.fetchData(projectView.singleInit);
+  projectController.single = function(ctx) {
+    projectName = ctx.params.projectName;
+
+    //we're calling fetchData here on the off chance someone is coming directly to a single project page with no data loaded
+    Project.fetchData(projectView.singleInit, projectName);
   };
 
   projectController.new = function() {

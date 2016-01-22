@@ -12,7 +12,8 @@
   };
 
   projectView.showDesc = function() {
-    $('.description').removeClass('hidden');
+    $('.description').removeClass('hidden').children().show();
+    $('.view-description').remove();
   };
 
   //new project stuff
@@ -82,9 +83,9 @@
     navView.footerInit();
   };
 
-  projectView.singleInit = function() {
+  projectView.singleInit = function(projectName) {
     Project.all.some(function(i){
-      if(i.frag == '/projects/' + ctx.params.projectName){
+      if(i.frag == '/projects/' + projectName){
         $('#project').html(i.toHtml());
         return true;
       }
