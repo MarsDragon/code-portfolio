@@ -1,7 +1,8 @@
 (function(module){
-  var githubView = {};
+  var aboutView = {};
 
   var add = function(type, ele){
+    //move this to index and templates
     if(type == 'repos'){
       return '<li><a href="'+ ele.url + '">' + ele.name + '</a></li>';
     }else{
@@ -13,10 +14,10 @@
     }
   };
 
-  githubView.init = function(type){
+  aboutView.init = function(type){
     //I'm not sure if this is genius or madness
     $('#'+type).append(
-      github.all.map(
+      about.all.map(
         function(ele){
           return add(type, ele);
         }
@@ -24,5 +25,5 @@
     );
   };
 
-  module.githubView = githubView;
+  module.aboutView = aboutView;
 })(window);

@@ -1,20 +1,20 @@
 (function(module){
-  var github = {};
+  var about = {};
 
-  github.all = [];
+  about.all = [];
 
   //type is events or repos. Or whatever. It's cool.
-  github.getData = function(type, callback){
+  about.getData = function(type, callback){
     var qs = '?per_page=10&sort=updated';
 
     $.get('/github/users/MarsDragon/' + type + qs,
         function(data, message, xhr){
-          github.all = data;
+          about.all = data;
         }).done(function(){
           callback(type);
         });
   };
 
 
-  module.github = github;
+  module.about = about;
 })(window);

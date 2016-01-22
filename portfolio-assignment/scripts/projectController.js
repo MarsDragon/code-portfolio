@@ -3,8 +3,8 @@
 
   projectController.about = function(ctx, next) {
     $('#about').show().siblings().hide();
-    github.getData('repos', githubView.init);
-    github.getData('events', githubView.init);
+    about.getData('repos', aboutView.init);
+    about.getData('events', aboutView.init);
     next();
   };
 
