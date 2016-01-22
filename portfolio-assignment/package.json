@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarsDragon/code-portfolio.git"
+    "url": "git+https://github.com/amyeleek/code-portfolio.git"
   },
   "author": "amyeleek@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MarsDragon/code-portfolio/issues"
+    "url": "https://github.com/amyeleek/code-portfolio/issues"
   },
-  "homepage": "https://github.com/MarsDragon/code-portfolio#readme"
+  "homepage": "https://github.com/amyeleek/code-portfolio#readme"
 }

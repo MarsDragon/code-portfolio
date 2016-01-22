@@ -7,7 +7,7 @@
   about.getData = function(type, callback){
     var qs = '?per_page=10&sort=updated';
 
-    $.get('/github/users/MarsDragon/' + type + qs,
+    $.get('/github/users/amyeleek/' + type + qs,
         function(data, message, xhr){
           about.all = data;
         }).done(function(){

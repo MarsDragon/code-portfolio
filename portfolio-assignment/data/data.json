@@ -1,7 +1,7 @@
 [
   {
     "name": "Portfolio",
-    "url": "https://github.com/MarsDragon/code-portfolio",
+    "url": "https://github.com/amyeleek/code-portfolio",
     "frag": "/projects/portfolio",
     "category": "web development",
     "startDate": "2016-01-04",
@@ -10,7 +10,7 @@
   },
   {
     "name": "Time Parallax",
-    "url": "https://github.com/MarsDragon/TimeParallax",
+    "url": "https://github.com/amyeleek/TimeParallax",
     "frag": "/projects/time",
     "category": "animations",
     "startDate": "2015-06-08",
@@ -19,7 +19,7 @@
   },
   {
     "name": "Knit Chart",
-    "url": "https://github.com/MarsDragon/KnitChart",
+    "url": "https://github.com/amyeleek/KnitChart",
     "frag": "/projects/knit",
     "category": "web development",
     "startDate": "2014-10-08",
