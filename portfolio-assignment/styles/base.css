@@ -27,6 +27,10 @@ h1{
   padding: .5em;
 }
 
+h3{
+  font-weight: 600;
+}
+
 a{
   color: white;
   text-decoration: none;
@@ -38,6 +42,30 @@ a:hover, .tab-nav li:hover{
 
 img{
   max-width: 100%;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li{
+  padding: 0.5em 0.8em;
+}
+
+.icon-plus, .icon-minus{
+  padding: 1%;
+  color: #D5D5D5;
+}
+
+.icon-plus:hover, .icon-minus:hover{
+  color: #FFF;
+}
+
+.icon-plus:before, .icon-minus:before{
+  padding-right: 1%;
+  color: #FFF;
 }
 
 /*I'll split these into better places when I have an actual mouse*/

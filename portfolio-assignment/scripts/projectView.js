@@ -2,14 +2,17 @@
 
   var projectView = {};
 
+  //reveals the description when the view more link is clicked on the project list page
   //should I put in a link to hide the description again?
   projectView.revealDesc = function() {
     $('.view-description').on('click', function(event){
       //Get the sibling description, remove its class .hidden, hide it, show its children
-      $(this).siblings('.description').removeClass('hidden').hide().children().show();
+      $(this).siblings('.description').removeClass('hidden').children().show();
+      $(this).hide();
     });
   };
 
+  //show the entire description and don't have a view more link
   projectView.showDesc = function() {
     $('.description').removeClass('hidden').children().show();
     $('.view-description').remove();
@@ -64,6 +67,7 @@
     $('#project-json').val(JSON.stringify(project) + ',');
   };
 
+  //initialize the project list view
   projectView.listInit = function() {
     //loop over all Projects, append them to the DOM
     if($('#projects article').length == 0){
@@ -83,6 +87,7 @@
     navView.footerInit();
   };
 
+  //initialize the single project view
   projectView.singleInit = function(projectName) {
     Project.all.some(function(i){
       if(i.frag == '/projects/' + projectName){
@@ -98,6 +103,7 @@
     navView.init();
   };
 
+  //and tne new project
   projectView.newInit = function(){
     projectView.initNewArticleForm();
     $('#new').show().siblings().hide();

@@ -2,7 +2,6 @@
   var aboutView = {};
 
   var add = function(type, ele){
-    //move this to index and templates
 
     var template = Handlebars.compile($('#git-template').text());
 

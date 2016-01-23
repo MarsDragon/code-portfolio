@@ -2,6 +2,7 @@
   var navView = {}
   var hasRun = 0;
 
+  //sets up a small bit of info in the footer for the projects page
   var footerHtml = function(){
     var footTemplate = Handlebars.compile($('#footer-template').text());
 
@@ -14,8 +15,9 @@
     return footTemplate(context);
   };
 
+  //menu toggling for mobile
   navView.toggleMenu = function () {
-    if(hasRun){return}
+    if(hasRun){return;}
 
     var $menu = $('.menu-toggle');
     $menu.on('click', function(e) {

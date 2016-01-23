@@ -22,10 +22,11 @@ address{
 
 article{
   padding: 1em 0;
-  border-top: 1px solid #7A7A7A;
+  border: 1px solid #7A7A7A;
+  border-width: 1px 0;
 }
 
-article:first-child{
+article:first-child, article:last-child{
   border: none;
 }
 
