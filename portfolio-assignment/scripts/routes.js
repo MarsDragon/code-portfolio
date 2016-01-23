@@ -2,7 +2,6 @@ page.base('');
 
 ///look at page.js, do an always
 //page.dispach(), line 314, call global function pointer, need var to hold that function
-//use page.callbacks?
 
 page('/', projectController.about, aboutView.init);
 page('/about', projectController.about, aboutView.init);

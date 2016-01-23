@@ -10,7 +10,7 @@
   Project.all = [];
 
   Project.loadData = function(test) {
-    //new using MAP! For power! For strength!
+    //now using MAP! For power! For strength!
     Project.all = test.map(function(proj){
       return new Project(proj);
     });
