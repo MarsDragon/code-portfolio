@@ -23,7 +23,7 @@
   };
 
   projectController.new = function() {
-    $('#new').show().siblings().hide();
+    projectView.newInit();
   };
 
   projectController.notFound = function() {

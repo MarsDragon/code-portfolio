@@ -72,11 +72,11 @@
       });
     }
 
-    $('#projects').show().siblings().hide();
-
     //set up all the events
     projectView.revealDesc();
     projectView.initNewArticleForm();
+
+    $('#projects').show().siblings().hide();
 
     //kludy, but have to do it this way until I add page.always()
     navView.init();
@@ -94,6 +94,13 @@
     $('#project').show().siblings().hide();
 
     projectView.showDesc();
+
+    navView.init();
+  };
+
+  projectView.newInit = function(){
+    projectView.initNewArticleForm();
+    $('#new').show().siblings().hide();
 
     navView.init();
   };
