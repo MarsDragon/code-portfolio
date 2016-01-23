@@ -17,15 +17,13 @@ body{
   font-size: 1em;
 }
 
-h1{
+h1, h2, h3{
   font-family: 'Lucida Bright', Georgia, serif;
   font-weight: 500;
-  padding: .5em;
 }
 
-h2{
-  font-family: 'Lucida Bright', Georgia, serif;
-  font-weight: 500;
+h1{
+  padding: .5em;
 }
 
 header{
