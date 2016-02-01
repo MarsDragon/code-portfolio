@@ -1,5 +1,14 @@
 [
   {
+    "name": "Hoofit",
+    "url": "https://github.com/SeleniumK/hoofit",
+    "frag": "/projects/hoofit",
+    "category": "web development",
+    "startDate": "2016-01-25",
+    "finDate": "",
+    "description": "<p>Hoofit is an app designed to help people, especially the visually-impaired, get around Seattle by walking. It features route mapping through Google Maps with warnings for missing sidewalks and representations of accessible signals, as well as destinations of interest in a walkable radius around a given point.</p><p>Created as a final project for Codefellows 301, development on this continues. Planned upgrades include Spanish language options, better route warnings, and more sets of data.</p>"
+  },
+  {
     "name": "Portfolio",
     "url": "https://github.com/amyeleek/code-portfolio",
     "frag": "/projects/portfolio",

@@ -20,7 +20,7 @@
     var etag = '';
     //start off by grabbing etag to check if JSON has been changed
     $.ajax('/data/data.json', {
-      method: 'HEAD',
+      method: 'GET',
       success: function(data, msg, xhr){
         etag = xhr.getResponseHeader('eTag');
 
@@ -36,6 +36,9 @@
             localStorage.setItem('testData', JSON.stringify(testData));
             localStorage.setItem('etag', etag);
             callback(projectName);
+          }).fail(function(e){
+              console.log("fail");
+              console.log(e);
           });
         }
       }
