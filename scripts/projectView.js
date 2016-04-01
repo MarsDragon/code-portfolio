@@ -2,19 +2,25 @@
 
   var projectView = {};
 
+  projShow = function(ele){
+    ele.removeClass('hidden').children().show();
+  };
+
   //reveals the description when the view more link is clicked on the project list page
   //should I put in a link to hide the description again?
   projectView.revealDesc = function() {
     $('.view-description').on('click', function(event){
       //Get the sibling description, remove its class .hidden, hide it, show its children
-      $(this).siblings('.description').removeClass('hidden').children().show();
-      $(this).hide();
+      var $ele = $(this);
+      projShow($ele.siblings('.description'))
+      //take this out, allow a toggle? 
+      $ele.hide();
     });
   };
 
   //show the entire description and don't have a view more link
   projectView.showDesc = function() {
-    $('.description').removeClass('hidden').children().show();
+    projShow($('.description'));
     $('.view-description').remove();
   };
 
@@ -28,7 +34,6 @@
       var $name = $(this).attr('name');
       localStorage[$name] ? $(this).val(localStorage.getItem($name)) : null;
     });
-    console.log('cache hit!');
 
     //when the exported JSON is focused on, select it all
     $('#exported').on('focus', function(){
@@ -52,7 +57,6 @@
       //slip the localStorage in here too, why not
       localStorage.setItem($name, $(this).val());
     });
-    console.log('cache write!');
 
     $('#project-preview').html(project.toHtml());
     $('#project-preview').show();

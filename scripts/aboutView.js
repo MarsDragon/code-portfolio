@@ -5,6 +5,7 @@
 
     var template = Handlebars.compile($('#git-template').text());
 
+    //url is messed up, goes to the API call. Also, double-appends. Fix.
     if(type == 'repos'){
       return template({url: ele.url, name: ele.name});
     }else{
