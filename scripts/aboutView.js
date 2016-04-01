@@ -5,21 +5,25 @@
 
     var template = Handlebars.compile($('#git-template').text());
 
-    //url is messed up, goes to the API call. Also, double-appends. Fix.
+    //maybe add in avatar? But it's only gonna be my face
     if(type == 'repos'){
-      return template({url: ele.url, name: ele.name});
+      //add description?
+      return template({url: ele.html_url, name: ele.name});
     }else{
       if(ele.type == 'IssueCommentEvent'){
         return template({url: ele.payload.comment.html_url, name: ele.type});
       }else{
-        return template({url: ele.repo.url, name: ele.type, repo: ele.repo.name});
+        //could add in a commit message
+        //have to munge the url because git just doesn't return an HTML url
+        var url = ele.repo.url.split(/api./).join('').split(/repos\//).join('');
+        return template({url: url, name: ele.type, repo: ele.repo.name});
       }
     }
   };
 
   aboutView.displayData = function(type){
     //I'm not sure if this is genius or madness
-    $('#'+type).append(
+    $('#'+type).html(
       about.all.map(
         function(ele){
           return add(type, ele);
